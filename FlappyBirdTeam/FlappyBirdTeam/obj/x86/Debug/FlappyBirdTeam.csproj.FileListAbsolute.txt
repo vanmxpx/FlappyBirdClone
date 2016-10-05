@@ -7,3 +7,12 @@ D:\Projects\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\OpenTK.dll
 D:\Projects\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.exe
 D:\Projects\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.pdb
 D:\Projects\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.csprojResolveAssemblyReference.cache
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\OpenTK.dll.config
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\FlappyBirdTeam.exe
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\FlappyBirdTeam.pdb
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\MonoGame.Framework.dll
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\NVorbis.dll
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\OpenTK.dll
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.csprojResolveAssemblyReference.cache
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.exe
+E:\TeamWork\FlappyBirdClone\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.pdb

@@ -1,4 +1,5 @@
 ﻿using FlappyBirdTeam.Tools;
+using FlappyBirdTeam.View.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,7 +10,7 @@ namespace FlappyBirdTeam
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        private Screen _currentScreen;
         public FlappyBirdGame()
         {
             _graphics = new GraphicsDeviceManager(this) {IsFullScreen = false};
@@ -48,6 +49,7 @@ namespace FlappyBirdTeam
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            _currentScreen.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -73,6 +75,7 @@ namespace FlappyBirdTeam
             rect.SetData(new[] { Color.Beige });
             _spriteBatch.Draw(rect, new Rectangle(i + 10, 10, 100, 100), Color.Beige);
             _spriteBatch.End();
+            _currentScreen.Draw(gameTime);
 
             base.Draw(gameTime);
         }
