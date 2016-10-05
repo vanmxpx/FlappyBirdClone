@@ -1,5 +1,6 @@
 ﻿using FlappyBirdTeam.GameObjects;
-using FlappyBirdTeam.Tools;
+﻿using FlappyBirdTeam.Tools;
+using FlappyBirdTeam.View.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,9 +11,9 @@ namespace FlappyBirdTeam
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Screen _currentScreen;
         private InputHandler _input = new InputHandler();
         private Bird bird = new Bird();
-
         public FlappyBirdGame()
         {
             _graphics = new GraphicsDeviceManager(this) {IsFullScreen = false};
@@ -53,6 +54,7 @@ namespace FlappyBirdTeam
                 Exit();
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                 bird.OnTouch();
+            _currentScreen.Update(gameTime);
 
             bird.Update(gameTime);
 
@@ -74,6 +76,7 @@ namespace FlappyBirdTeam
             rect.SetData(new[] { Color.Beige });
             _spriteBatch.Draw(rect, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), Color.Beige);
             _spriteBatch.End();
+            _currentScreen.Draw(gameTime);
 
             base.Draw(gameTime);
         }

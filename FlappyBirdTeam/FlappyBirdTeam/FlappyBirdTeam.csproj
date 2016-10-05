@@ -62,6 +62,7 @@
     <Compile Include="Tools\ScreenManager.cs" />
     <Compile Include="View\Screens\GameScreen.cs" />
     <Compile Include="View\Screens\MenuScreen.cs" />
+    <Compile Include="View\Screens\Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
