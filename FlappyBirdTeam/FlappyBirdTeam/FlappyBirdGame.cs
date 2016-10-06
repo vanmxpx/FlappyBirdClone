@@ -1,4 +1,6 @@
+﻿using FlappyBirdTeam.GameObjects;
 ﻿using FlappyBirdTeam.Tools;
+using FlappyBirdTeam.View.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,7 +11,9 @@ namespace FlappyBirdTeam
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        private Screen _currentScreen;
+        private InputHandler _input = new InputHandler();
+        private Bird bird = new Bird();
         public FlappyBirdGame()
         {
             _graphics = new GraphicsDeviceManager(this) {IsFullScreen = false};
@@ -48,8 +52,11 @@ namespace FlappyBirdTeam
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                bird.OnTouch();
+            _currentScreen.Update(gameTime);
 
-            // TODO: Add your update logic here
+            bird.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -58,21 +65,18 @@ namespace FlappyBirdTeam
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        private int i = 0;
         protected override void Draw(GameTime gameTime)
         {
-            i++;
-            //frames per 1 secound
-            double fps = (1 / gameTime.ElapsedGameTime.TotalSeconds);
             //fill the background
             GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
             // TODO: Add your drawing code here
             var rect = new Texture2D(GraphicsDevice, 1, 1);
             rect.SetData(new[] { Color.Beige });
-            _spriteBatch.Draw(rect, new Rectangle(i + 10, 10, 100, 100), Color.Beige);
+            _spriteBatch.Draw(rect, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), Color.Beige);
             _spriteBatch.End();
+            _currentScreen.Draw(gameTime);
 
             base.Draw(gameTime);
         }

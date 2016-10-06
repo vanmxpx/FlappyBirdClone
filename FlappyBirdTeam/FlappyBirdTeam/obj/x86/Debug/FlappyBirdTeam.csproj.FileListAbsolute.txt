@@ -1,9 +1,0 @@
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\OpenTK.dll.config
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\FlappyBirdTeam.exe
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\FlappyBirdTeam.pdb
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\MonoGame.Framework.dll
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\NVorbis.dll
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\bin\DesktopGL\x86\Debug\OpenTK.dll
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.exe
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.pdb
-D:\Projects\FlappyBirdTeam\FlappyBirdTeam\obj\x86\Debug\FlappyBirdTeam.csprojResolveAssemblyReference.cache
