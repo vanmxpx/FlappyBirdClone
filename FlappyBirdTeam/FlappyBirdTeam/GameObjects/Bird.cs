@@ -17,7 +17,10 @@ namespace FlappyBirdTeam.GameObjects
             _velocity += _acceleration;
             if (_velocity.Y > 600.0f)
                 _velocity.Y = 600.0f;
-
+            if (_position.Y > 800.0f)
+                _position.Y = -_size.Y;
+            else if (_position.Y < -_size.Y)
+                _position.Y = 800.0f;
             base.Update(time);
         }
 
