@@ -12,8 +12,8 @@ namespace FlappyBirdTeam
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Screen _currentScreen;
-        private InputHandler _input = new InputHandler();
-        private Bird bird = new Bird();
+        //Temporary field
+        private Bird bird = new Bird(200, 200, 60, 60);
         public FlappyBirdGame()
         {
             _graphics = new GraphicsDeviceManager(this) {IsFullScreen = false};
@@ -52,9 +52,7 @@ namespace FlappyBirdTeam
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                bird.OnTouch();
-            _currentScreen.Update(gameTime);
+            //_currentScreen.Update(gameTime);
 
             bird.Update(gameTime);
 
@@ -76,7 +74,7 @@ namespace FlappyBirdTeam
             rect.SetData(new[] { Color.Beige });
             _spriteBatch.Draw(rect, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), Color.Beige);
             _spriteBatch.End();
-            _currentScreen.Draw(gameTime);
+            //_currentScreen.Draw(gameTime);
 
             base.Draw(gameTime);
         }
