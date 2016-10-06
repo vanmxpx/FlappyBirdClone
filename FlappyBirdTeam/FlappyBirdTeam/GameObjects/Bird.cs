@@ -1,43 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using OpenTK.Input;
 
 namespace FlappyBirdTeam.GameObjects
 {
-    public class Bird
+    public class Bird : GameObject
     {
-        private Vector2 _position;
-        private Vector2 _velocity;
-        private Vector2 _size;
-        public Vector2 Position {get { return _position; } set { _position = value; }}
-        public Vector2 Velocity { get { return _velocity; } set { _velocity = value; } }
-        public Vector2 Size { get { return _size; } set { _size = value; } }
-
-        public Bird()
+        public Bird(Single x, Single y, Single width, Single height)
+            : base(x, y, width, height)
         {
-            _position = new Vector2(200, 0);
             _velocity = new Vector2(0, 200.0f);
-            _size = new Vector2(30, 30);
+            _acceleration = new Vector2(0, 40.0f);
         }
 
-        public void Update(GameTime time)
+        public override void Update(GameTime time)
         {
-            _velocity.Y += 9.8f;
-            if (_velocity.Y > 400)
-                _velocity.Y = 400;
-
-            _position.Y += (float)time.ElapsedGameTime.TotalSeconds*_velocity.Y;
+            _velocity += _acceleration;
+            if (_velocity.Y > 600.0f)
+                _velocity.Y = 600.0f;
+            if (_position.Y > 800.0f)
+                _position.Y = -_size.Y;
+            else if (_position.Y < -_size.Y)
+                _position.Y = 800.0f;
+            base.Update(time);
         }
 
-        public void OnTouch()
+        protected override void OnTouch(Object sender, EventArgs e)
         {
-            _velocity.Y = -200;
+            _velocity.Y = -640.0f;
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
         }
     }
 }
