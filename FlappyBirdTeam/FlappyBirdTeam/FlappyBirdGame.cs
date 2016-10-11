@@ -1,5 +1,6 @@
 ﻿using FlappyBirdTeam.GameObjects;
-﻿using FlappyBirdTeam.Tools;
+using FlappyBirdTeam.Tools;
+using FlappyBirdTeam.View;
 using FlappyBirdTeam.View.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +12,8 @@ namespace FlappyBirdTeam
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Screen _currentScreen;
+        private GameState _currentGameState;
+        
         //Temporary field
         private Bird bird = new Bird(200, 200, 60, 60);
         public FlappyBirdGame()
@@ -21,12 +23,13 @@ namespace FlappyBirdTeam
             _graphics.PreferredBackBufferWidth = 480;
             Components.Add(new ScreenManager(this));
             Content.RootDirectory = "Content";
+            _currentGameState = GameState.Game;
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            
             base.Initialize();
         }
 
@@ -52,9 +55,17 @@ namespace FlappyBirdTeam
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            //_currentScreen.Update(gameTime);
+            // v_currentScreen.Update(gameTime);
 
-            bird.Update(gameTime);
+            switch(_currentGameState)
+            {
+                case GameState.End: UpdateEndScreen(gameTime);
+                    break;
+                case GameState.Hello: UpdateHelloScreen(gameTime);
+                    break;
+                case GameState.Game: UpdateGameScreen(gameTime);
+                    break;
+            }
 
             base.Update(gameTime);
         }
@@ -70,13 +81,51 @@ namespace FlappyBirdTeam
 
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
             // TODO: Add your drawing code here
+
+            switch (_currentGameState)
+            {
+                case GameState.End: DrawEndScreen(gameTime);
+                    break;
+                case GameState.Hello: DrawHelloScreen(gameTime);
+                    break;
+                case GameState.Game: DrawGameScreen(gameTime);
+                    break;
+            }
+
+            base.Draw(gameTime);
+        }
+
+        private void DrawGameScreen(GameTime gameTime)
+        {
             var rect = new Texture2D(GraphicsDevice, 1, 1);
             rect.SetData(new[] { Color.Beige });
             _spriteBatch.Draw(rect, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), Color.Beige);
             _spriteBatch.End();
-            //_currentScreen.Draw(gameTime);
+        }
+        private void UpdateGameScreen(GameTime gameTime)
+        {
+            bird.Update(gameTime);
+            if (bird.Position.Y > 800)
+                _currentGameState = GameState.End;
+        }
+        private void DrawEndScreen(GameTime gameTime)
+        {
+            var rect = new Texture2D(GraphicsDevice, 1, 1);
+            rect.SetData(new[] { Color.Beige });
+            _spriteBatch.Draw(rect, new Rectangle(100, 100, 150, 200), Color.Red);
+            _spriteBatch.End();
+        }
+        private void UpdateEndScreen(GameTime gameTime)
+        {
 
-            base.Draw(gameTime);
+        }
+        private void DrawHelloScreen(GameTime gameTime)
+        {
+
+        }
+        private void UpdateHelloScreen(GameTime gameTime)
+        {
+
         }
     }
 }

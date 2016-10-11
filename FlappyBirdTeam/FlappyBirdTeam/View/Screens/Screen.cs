@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FlappyBirdTeam.View.Screens
 {
-    interface Screen
+    public interface IScreen
     {
         void Update(GameTime gameTime);
         void Draw(GameTime gameTime);
