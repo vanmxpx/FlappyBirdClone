@@ -15,8 +15,8 @@ namespace FlappyBirdTeam.GameObjects
         public override void Update(GameTime time)
         {
             _velocity += _acceleration;
-            if (_velocity.Y > 600.0f)
-                _velocity.Y = 600.0f;
+            if (_velocity.Y > 800.0f)
+                _velocity.Y = 800.0f;
             if (_position.Y > 800.0f)
                 _position.Y = -_size.Y;
             else if (_position.Y < -_size.Y)
@@ -26,7 +26,8 @@ namespace FlappyBirdTeam.GameObjects
 
         protected override void OnTouch(Object sender, EventArgs e)
         {
-            _velocity.Y = -640.0f;
+            //_velocity.Y = -640.0f;
+            _velocity.Y = -1000.0f;
         }
 
         public override void Dispose()

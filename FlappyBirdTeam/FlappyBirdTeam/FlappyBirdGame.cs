@@ -12,10 +12,11 @@ namespace FlappyBirdTeam
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Texture2D _birdTexture;
         private GameState _currentGameState;
         
         //Temporary field
-        private Bird bird = new Bird(200, 200, 60, 60);
+        private Bird bird = new Bird(200, 100, 190, 190);
         public FlappyBirdGame()
         {
             _graphics = new GraphicsDeviceManager(this) {IsFullScreen = false};
@@ -37,8 +38,8 @@ namespace FlappyBirdTeam
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _birdTexture = Content.Load<Texture2D>("bird_fall_down_small");
 
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void UnloadContent()
@@ -97,13 +98,12 @@ namespace FlappyBirdTeam
 
         private void DrawGameScreen(GameTime gameTime)
         {
-            var rect = new Texture2D(GraphicsDevice, 1, 1);
-            rect.SetData(new[] { Color.Beige });
-            _spriteBatch.Draw(rect, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), Color.Beige);
+            _spriteBatch.Draw(_birdTexture, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), Color.Beige);
             _spriteBatch.End();
         }
         private void UpdateGameScreen(GameTime gameTime)
         {
+            //bool direction = bird.Update(gameTime);
             bird.Update(gameTime);
             if (bird.Position.Y > 800)
                 _currentGameState = GameState.End;

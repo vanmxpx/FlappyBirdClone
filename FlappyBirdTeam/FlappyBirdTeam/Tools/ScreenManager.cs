@@ -11,7 +11,6 @@ namespace FlappyBirdTeam.Tools
         public ScreenManager(Game game) : base(game)
         {
             _currentGame = game;
-
         }
     }
 }
