@@ -14,6 +14,7 @@ namespace FlappyBirdTeam
         private SpriteBatch _spriteBatch;
         private Texture2D _birdTexture;
         private GameState _currentGameState;
+        private float _birdRotation;
         
         //Temporary field
         private Bird bird = new Bird(200, 100, 190, 190);
@@ -25,6 +26,7 @@ namespace FlappyBirdTeam
             Components.Add(new ScreenManager(this));
             Content.RootDirectory = "Content";
             _currentGameState = GameState.Game;
+            _birdRotation = 0.1f;
         }
 
         protected override void Initialize()
@@ -98,11 +100,12 @@ namespace FlappyBirdTeam
 
         private void DrawGameScreen(GameTime gameTime)
         {
-            _spriteBatch.Draw(_birdTexture, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), Color.Beige);
+            _spriteBatch.Draw(_birdTexture, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), null,  Color.Beige, _birdRotation, new Vector2(10,10),SpriteEffects.None, 0);
             _spriteBatch.End();
         }
         private void UpdateGameScreen(GameTime gameTime)
         {
+            _birdRotation += 0.1f;
             //bool direction = bird.Update(gameTime);
             bird.Update(gameTime);
             if (bird.Position.Y > 800)
@@ -110,9 +113,8 @@ namespace FlappyBirdTeam
         }
         private void DrawEndScreen(GameTime gameTime)
         {
-            var rect = new Texture2D(GraphicsDevice, 1, 1);
-            rect.SetData(new[] { Color.Beige });
-            _spriteBatch.Draw(rect, new Rectangle(100, 100, 150, 200), Color.Red);
+            Texture2D _gameOverTexture = Content.Load<Texture2D>("game_over");
+            _spriteBatch.Draw(_gameOverTexture, new Rectangle(150, 300, 200, 200), Color.White);
             _spriteBatch.End();
         }
         private void UpdateEndScreen(GameTime gameTime)
