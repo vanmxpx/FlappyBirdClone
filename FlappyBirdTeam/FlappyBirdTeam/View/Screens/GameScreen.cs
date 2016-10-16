@@ -1,8 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Cocos2D;
+using Microsoft.Xna.Framework;
 
 namespace FlappyBirdTeam.View.Screens
 {
-    public class GameScreen : IScreen
+    public class GameScreen : CCScene
     {
         public void Draw(GameTime gameTime)
         {

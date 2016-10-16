@@ -1,4 +1,6 @@
-﻿using FlappyBirdTeam.GameObjects;
+﻿using Cocos2D;
+using CocosDenshion;
+using FlappyBirdTeam.GameObjects;
 using FlappyBirdTeam.Tools;
 using FlappyBirdTeam.View;
 using FlappyBirdTeam.View.Screens;
@@ -13,7 +15,6 @@ namespace FlappyBirdTeam
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D _birdTexture;
-        private GameState _currentGameState;
         private float _birdRotation;
         
         //Temporary field
@@ -21,12 +22,12 @@ namespace FlappyBirdTeam
         public FlappyBirdGame()
         {
             _graphics = new GraphicsDeviceManager(this) {IsFullScreen = false};
-            _graphics.PreferredBackBufferHeight = 800;
-            _graphics.PreferredBackBufferWidth = 480;
-            Components.Add(new ScreenManager(this));
             Content.RootDirectory = "Content";
             _currentGameState = GameState.Game;
             _birdRotation = 0.1f;
+
+            CCApplication application = new AppDelegate(this, _graphics);
+            Components.Add(application);
         }
 
         protected override void Initialize()
@@ -48,7 +49,17 @@ namespace FlappyBirdTeam
         {
             // TODO: Unload any non ContentManager content here
         }
-
+        private void ProcessBackClick()
+        {
+            if (CCDirector.SharedDirector.CanPopScene)
+            {
+                CCDirector.SharedDirector.PopScene();
+            }
+            else
+            {
+                Exit();
+            }
+        }
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -57,18 +68,8 @@ namespace FlappyBirdTeam
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+               ProcessBackClick();
             // v_currentScreen.Update(gameTime);
-
-            switch(_currentGameState)
-            {
-                case GameState.End: UpdateEndScreen(gameTime);
-                    break;
-                case GameState.Hello: UpdateHelloScreen(gameTime);
-                    break;
-                case GameState.Game: UpdateGameScreen(gameTime);
-                    break;
-            }
 
             base.Update(gameTime);
         }
@@ -85,16 +86,6 @@ namespace FlappyBirdTeam
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
             // TODO: Add your drawing code here
 
-            switch (_currentGameState)
-            {
-                case GameState.End: DrawEndScreen(gameTime);
-                    break;
-                case GameState.Hello: DrawHelloScreen(gameTime);
-                    break;
-                case GameState.Game: DrawGameScreen(gameTime);
-                    break;
-            }
-
             base.Draw(gameTime);
         }
 
@@ -108,8 +99,8 @@ namespace FlappyBirdTeam
             _birdRotation += 0.1f;
             //bool direction = bird.Update(gameTime);
             bird.Update(gameTime);
-            if (bird.Position.Y > 800)
-                _currentGameState = GameState.End;
+            if (bird.Position.Y > 800) ;
+                //_currentGameState = GameState.End;
         }
         private void DrawEndScreen(GameTime gameTime)
         {
