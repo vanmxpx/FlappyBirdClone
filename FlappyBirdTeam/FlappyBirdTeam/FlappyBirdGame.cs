@@ -14,18 +14,16 @@ namespace FlappyBirdTeam
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Texture2D _birdTexture;
-        private float _birdRotation;
+        private Texture2D _birdTextureDown;
+        private Texture2D _birdTextureUp;
         
         //Temporary field
-        private Bird bird = new Bird(200, 100, 190, 190);
+        private Bird bird = new Bird(200, 100, 100, 100);
         public FlappyBirdGame()
         {
             _graphics = new GraphicsDeviceManager(this) {IsFullScreen = false};
             Content.RootDirectory = "Content";
             _currentGameState = GameState.Game;
-            _birdRotation = 0.1f;
-
             CCApplication application = new AppDelegate(this, _graphics);
             Components.Add(application);
         }
@@ -41,8 +39,8 @@ namespace FlappyBirdTeam
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _birdTexture = Content.Load<Texture2D>("bird_fall_down_small");
-
+            _birdTextureDown = Content.Load<Texture2D>("bird_down");
+            _birdTextureUp = Content.Load<Texture2D>("bird_up");
         }
 
         protected override void UnloadContent()
@@ -91,12 +89,12 @@ namespace FlappyBirdTeam
 
         private void DrawGameScreen(GameTime gameTime)
         {
-            _spriteBatch.Draw(_birdTexture, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), null,  Color.Beige, _birdRotation, new Vector2(10,10),SpriteEffects.None, 0);
+            Texture2D _currentBirdtexture = (bird.IsFlyingUp) ? _birdTextureDown : _birdTextureUp;
+            _spriteBatch.Draw(_currentBirdtexture, new Rectangle((int)bird.Position.X, (int)bird.Position.Y, (int)bird.Size.X, (int)bird.Size.Y), null, Color.Beige, bird.Rotation, new Vector2(10, 10), SpriteEffects.None, 0);
             _spriteBatch.End();
         }
         private void UpdateGameScreen(GameTime gameTime)
         {
-            _birdRotation += 0.1f;
             //bool direction = bird.Update(gameTime);
             bird.Update(gameTime);
             if (bird.Position.Y > 800) ;
