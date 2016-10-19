@@ -1,6 +1,6 @@
 ﻿namespace FlappyBirdTeam.View.Screens
 {
-    enum GameState
+    public enum GameState
     {
         Hello,
         Game,

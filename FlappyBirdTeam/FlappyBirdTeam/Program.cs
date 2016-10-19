@@ -1,10 +1,10 @@
-﻿using System;
+using System;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
 
 namespace FlappyBirdTeam
 {
-    /// <summary>
-    /// The main class.
-    /// </summary>
+
     public static class Program
     {
         /// <summary>
@@ -21,3 +21,4 @@ namespace FlappyBirdTeam
         }
     }
 }
+

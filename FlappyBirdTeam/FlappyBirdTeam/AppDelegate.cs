@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Microsoft.Xna.Framework;
 using Cocos2D;
 using CocosDenshion;
@@ -43,7 +43,7 @@ namespace FlappyBirdTeam
         }
 
         public override bool ApplicationDidFinishLaunching()
-        {   
+        {
             _pDirector.SetOpenGlView();
 
             // 2D projection
@@ -68,7 +68,7 @@ namespace FlappyBirdTeam
         public void ChangeScene(GameState changed)
         {
             currentScene = changed;
-            if(currentScene == GameState.Hello)
+            if (currentScene == GameState.Hello)
                 _pDirector.RunWithScene(sceneMenu);
             else
                 _pDirector.RunWithScene(sceneGame);

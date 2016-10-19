@@ -1,5 +1,4 @@
-﻿using Cocos2D;
-using CocosDenshion;
+using Cocos2D;
 using FlappyBirdTeam.GameObjects;
 using FlappyBirdTeam.Tools;
 using FlappyBirdTeam.View;
@@ -16,22 +15,21 @@ namespace FlappyBirdTeam
         private SpriteBatch _spriteBatch;
         private Texture2D _birdTextureDown;
         private Texture2D _birdTextureUp;
-        
+
         //Temporary field
         private Bird bird = new Bird(200, 100, 100, 100);
         public FlappyBirdGame()
         {
-            _graphics = new GraphicsDeviceManager(this) {IsFullScreen = false};
+            _graphics = new GraphicsDeviceManager(this) { IsFullScreen = false };
             Content.RootDirectory = "Content";
-            _currentGameState = GameState.Game;
+            //_currentGameState = GameState.Game;
             CCApplication application = new AppDelegate(this, _graphics);
             Components.Add(application);
         }
-
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+
             base.Initialize();
         }
 
@@ -66,7 +64,7 @@ namespace FlappyBirdTeam
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-               ProcessBackClick();
+                ProcessBackClick();
             // v_currentScreen.Update(gameTime);
 
             base.Update(gameTime);
@@ -97,8 +95,8 @@ namespace FlappyBirdTeam
         {
             //bool direction = bird.Update(gameTime);
             bird.Update(gameTime);
-            if (bird.Position.Y > 800) ;
-                //_currentGameState = GameState.End;
+            if (bird.Position.Y > 800) /*do something*/;
+            //_currentGameState = GameState.End;
         }
         private void DrawEndScreen(GameTime gameTime)
         {

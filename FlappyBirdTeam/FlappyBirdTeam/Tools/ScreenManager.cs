@@ -7,7 +7,8 @@ namespace FlappyBirdTeam.Tools
     {
         private Game _currentGame;
         private GameState _currentGameState;
-        public ScreenManager(Game game) : base(game)
+        public ScreenManager(Game game)
+            : base(game)
         {
             _currentGame = game;
         }

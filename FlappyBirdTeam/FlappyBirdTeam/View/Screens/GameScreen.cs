@@ -7,12 +7,12 @@ namespace FlappyBirdTeam.View.Screens
     {
         public void Draw(GameTime gameTime)
         {
-            
+
         }
 
         public void Update(GameTime gameTime)
         {
-            
+
         }
     }
 }

@@ -32,7 +32,7 @@ namespace FlappyBirdTeam.GameObjects
                 _position.Y = -_size.Y;
             else if (_position.Y < -_size.Y)
                 _position.Y = 800.0f;
-            Rotation = (float)(0.7*_velocity.Y / 1000);
+            Rotation = (float)(0.7 * _velocity.Y / 1000);
             base.Update(time);
         }
 
